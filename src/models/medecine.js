@@ -42,6 +42,6 @@ const medicineSchema = new Schema({
     type: [String],
     default: []
   }
-});
+}).set('strictPopulate', false);
 const Medicine = model('Medicine', medicineSchema);
 export default Medicine;

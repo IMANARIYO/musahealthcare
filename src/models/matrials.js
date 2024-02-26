@@ -12,6 +12,6 @@ const materialSchema = new Schema({
     type:String,
     required:false 
   }
-});
+}).set('strictPopulate', false);
 const Material = model('Material', materialSchema);
 export default Material;

@@ -30,7 +30,8 @@ const treeSchema = new Schema({
     type: String,
     default: 'Leaves'
   }]
-});
+}).set('strictPopulate', false);
+
 treeSchema.pre('save', function(next) {
   const removeDuplicates = (array) => {
     const uniqueValues = [];

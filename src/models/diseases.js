@@ -26,6 +26,6 @@ const diseaseSchema = new Schema({
     type: String,
     default: []
   }]
-});
+}).set('strictPopulate', false);
 const Disease = model('Disease', diseaseSchema);
 export default Disease;

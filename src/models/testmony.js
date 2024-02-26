@@ -27,6 +27,6 @@ const testimonySchema = new Schema({
   disease:{
 type:String
   }
-});
+}).set('strictPopulate', false);
 const Testimony = model('Testimony', testimonySchema);
 export default Testimony;

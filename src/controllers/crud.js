@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import Farm from "../models/farm.js";
 import Tree from "../models/tree.js";
 import Medicine from "../models/medecine.js";
+import Disease from "../models/diseases.js";
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,

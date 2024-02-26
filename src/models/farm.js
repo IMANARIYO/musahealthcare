@@ -24,6 +24,6 @@ required:false
     type: String,
     required: false
   }
-});
+}).set('strictPopulate', false);
 const Farm = model('Farm', farmSchema);
 export default Farm;
