@@ -10,8 +10,9 @@ const deleteFarm = deleteModelHandler(Farm);
 const farmRouter=express.Router();
 //Define your Express routes
 farmRouter.post('/createfarms',uploaded,createFarm);
-farmRouter.get('/getallfarms', readFarms);
 farmRouter.put('/updateFarm/:id', updateFarm);
 farmRouter.delete('/deleteFarm/:id', deleteFarm);
+farmRouter.get('/getallfarms', readFarms);
+farmRouter.get('/getfarmById/:id', readFarms);
 
 export default farmRouter;

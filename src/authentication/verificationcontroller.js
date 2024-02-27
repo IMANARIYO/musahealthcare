@@ -1,9 +1,8 @@
 // verificationController.js
 
 import cron from "node-cron";
-import { userconst } from "../models/usersModel.js";
+import { userconst } from '../models/users.js'
 import { catchAsync } from "../middlewares/globaleerorshandling.js";
-import { isOTPValid } from "../utils/passwordfunctions.js"; // Import the isOTPValid function
 const tokenExpirationTime = 24 * 60 * 60 * 1000;
 
 export const verifyEmail = catchAsync(async (req, res, next) => {

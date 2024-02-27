@@ -1,4 +1,4 @@
-import { userconst } from "../models/index.js";
+import { userconst } from '../models/users.js'
 import { passComparer,passHashing}from"../utils/passwordfunctions.js"
 export const changepassword=async (req,res,next)=>{
 try{

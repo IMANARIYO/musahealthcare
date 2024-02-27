@@ -1,4 +1,4 @@
-import { userconst } from '../models/index.js'
+import { userconst } from '../models/users.js'
 import { sendEmail } from '../utils/emailUtility.js'
 import { generateOTP } from '../utils/passwordfunctions.js'
 import { passHashing } from '../utils/passwordfunctions.js'
@@ -34,6 +34,7 @@ const expiresAt=generateOTP().expiresAt;
         'OTP sent successfully!! you can go to youe email and came back with it.'
     })
 }
+
 
 export const verifyOTPAndUpdatePassword = async (req, res) => {
   const userEmail = req.body.email

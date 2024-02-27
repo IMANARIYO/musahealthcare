@@ -1,0 +1,65 @@
+ the complete links for each model, including the "Get by ID" endpoints:
+
+Farm:
+
+Create Farm: http://localhost:4500/farm/createfarms
+Update Farm: http://localhost:4500/farm/updateFarm/:id
+Delete Farm: http://localhost:4500/farm/deleteFarm/:id
+Get All Farms: http://localhost:4500/farm/getallfarms
+Get Farm by ID: http://localhost:4500/farm/getfarmById/:id
+Medicine:
+
+Create Medicine: http://localhost:4500/medicine/createMedicine
+Update Medicine: http://localhost:4500/medicine/updateMedicine/:id
+Delete Medicine: http://localhost:4500/medicine/deleteMedicine/:id
+Get All Medicines: http://localhost:4500/medicine/getAllMedicines
+Get Medicine by ID: http://localhost:4500/medicine/getMedicineById/:id
+Disease:
+
+Create Disease: http://localhost:4500/disease/createDisease
+Update Disease: http://localhost:4500/disease/updateDisease/:id
+Delete Disease: http://localhost:4500/disease/deleteDisease/:id
+Get All Diseases: http://localhost:4500/disease/getAllDiseases
+Get Disease by ID: http://localhost:4500/disease/getDiseaseById/:id
+Partner:
+
+Create Partner: http://localhost:4500/partner/createPartner
+Update Partner: http://localhost:4500/partner/updatePartner/:id
+Delete Partner: http://localhost:4500/partner/deletePartner/:id
+Get All Partners: http://localhost:4500/partner/getAllPartners
+Get Partner by ID: http://localhost:4500/partner/getPartnerById/:id
+Appointment:
+
+Create Appointment: http://localhost:4500/appointment/createAppointment
+Update Appointment: http://localhost:4500/appointment/updateAppointment/:id
+Delete Appointment: http://localhost:4500/appointment/deleteAppointment/:id
+Get All Appointments: http://localhost:4500/appointment/getAllAppointments
+Get Appointment by ID: http://localhost:4500/appointment/getAppointmentById/:id
+Tree:
+
+Create Tree: http://localhost:4500/tree/createTree
+Update Tree: http://localhost:4500/tree/updateTree/:id
+Delete Tree: http://localhost:4500/tree/deleteTree/:id
+Get All Trees: http://localhost:4500/tree/getAllTrees
+Get Tree by ID: http://localhost:4500/tree/getTreeById/:id
+Contact:
+
+Create Contact: http://localhost:4500/contact/createContact
+Update Contact: http://localhost:4500/contact/updateContact/:id
+Delete Contact: http://localhost:4500/contact/deleteContact/:id
+Get All Contacts: http://localhost:4500/contact/getAllContacts
+Get Contact by ID: http://localhost:4500/contact/getContactById/:id
+Service:
+
+Create Service: http://localhost:4500/service/createService
+Update Service: http://localhost:4500/service/updateService/:id
+Delete Service: http://localhost:4500/service/deleteService/:id
+Get All Services: http://localhost:4500/service/getAllServices
+Get Service by ID: http://localhost:4500/service/getServiceById/:id
+Patient:
+
+Create Patient: http://localhost:4500/patient/createPatient
+Update Patient: http://localhost:4500/patient/updatePatient/:id
+Delete Patient: http://localhost:4500/patient/deletePatient/:id
+Get All Patients: http://localhost:4500/patient/getAllPatients
+Get Patient by ID: http://localhost:4500/patient/getPatientById/:id

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { tokengenerating, passHashing } from "../utils/index.js";
-import { userconst } from "../models/usersModel.js";
+import { userconst } from '../models/users.js'
 import { sendEmail } from "../utils/index.js";
 import { signupHtmlMessage } from "../utils/index.js";
 import cron from "node-cron";

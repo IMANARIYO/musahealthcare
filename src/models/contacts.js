@@ -1,4 +1,3 @@
-// models/Contact.js
 import mongoose from 'mongoose';
 
 const contactSchema = new mongoose.Schema({
@@ -10,6 +9,8 @@ const contactSchema = new mongoose.Schema({
   dateSent: { type: Date, default: Date.now },
   dateReplied: { type: Date, required: false },
   reply: { type: String, required: false }
-});
+}).set('strictPopulate', false);
 
-export default mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model('Contact', contactSchema);
+
+export default Contact;

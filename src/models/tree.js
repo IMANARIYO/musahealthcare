@@ -28,7 +28,12 @@ const treeSchema = new Schema({
   },
   partsUsed: [{
     type: String,
-    default: 'Leaves'
+    default: 'Leaves,stems,roots,fruits,flowers,seeds,bark,wood'
+  }],
+  patiennts:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Patients',
+    required: false
   }]
 }).set('strictPopulate', false);
 

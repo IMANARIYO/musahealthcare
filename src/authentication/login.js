@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import  {userconst}  from "../models/index.js";
+
+import { userconst } from '../models/users.js'
 import { passComparer,tokengenerating,passHashing } from "../utils/index.js";
 export const login= async (req,res) =>{
 try{

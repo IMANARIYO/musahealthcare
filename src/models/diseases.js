@@ -25,6 +25,11 @@ const diseaseSchema = new Schema({
   vaccinations:[ {
     type: String,
     default: []
+  }],
+  patients: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Patients',
+    required: false
   }]
 }).set('strictPopulate', false);
 const Disease = model('Disease', diseaseSchema);
