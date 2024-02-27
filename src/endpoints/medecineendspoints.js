@@ -15,7 +15,7 @@ const medicineRouter = express.Router();
 medicineRouter.post('/createMedicine', uploaded, createMedicine);
 medicineRouter.get('/getAllMedicines', readMedicines);
 medicineRouter.get('/getMedicineById/:id', readMedicines);
-medicineRouter.put('/updateMedicine/:id', updateMedicine);
+medicineRouter.put('/updateMedicine/:id',uploaded, updateMedicine);
 medicineRouter.delete('/deleteMedicine/:id', deleteMedicine);
 
 export default medicineRouter;

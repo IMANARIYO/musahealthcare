@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const materialSchema = new Schema({
   images: [String],
-  treeUsedToMake: {
+  treesUsedToMake:[ {
     type: Schema.Types.ObjectId,
     ref: 'Tree', 
     required:false 
-  },
+  }],
   howItIsUsed:String, 
   conditionsForTheTree: {
     type:String,

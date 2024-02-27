@@ -10,10 +10,13 @@ const testimonySchema = new Schema({
     type: String,
     required: true
   },
-  images: {
+  image: {
+    type: String,
+  },
+  images: [{
     type: String,
     required: true
-  },
+  }],
   date: {
     type: Date,
     default: Date.now

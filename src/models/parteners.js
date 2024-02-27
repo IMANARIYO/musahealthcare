@@ -1,7 +1,6 @@
-// models/Partners.js
 import mongoose from 'mongoose';
 
-const partnersSchema = new mongoose.Schema({
+const partnerSchema = new mongoose.Schema({
   name: { type: String, required: false },
   image: { type: String, required: false },
   telephone: { type: String, required: false },
@@ -11,4 +10,6 @@ const partnersSchema = new mongoose.Schema({
   description: { type: String, required: false },
   district: { type: String, required: false }
 }).set('strictPopulate', false);
-export default mongoose.model('Partners', partnersSchema);
+
+export const partners = mongoose.model('Partners', partnerSchema);
+

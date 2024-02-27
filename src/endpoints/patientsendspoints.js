@@ -15,7 +15,7 @@ const deletePatient = deleteModelHandler(patientModel);
 patientRouter.post('/createPatient', uploaded, createPatient);
 patientRouter.get('/getAllPatients', readPatients);
 patientRouter.get('/getPatientById', readPatients);
-patientRouter.put('/updatePatient/:id', updatePatient);
+patientRouter.put('/updatePatient/:id',uploaded,updatePatient);
 patientRouter.delete('/deletePatient/:id', deletePatient);
 
 export default patientRouter;

@@ -18,6 +18,7 @@ const createObject = async (req, Model) => {
   console.log('req.body', req.body);
   if (req.files && req.files.images){
     console.log("Images processing ");
+   console.log(newObject.image);
     let imagesArray = [];
     for (let index = 0; index < req.files.images.length; index++) {
       imagesArray.push(
@@ -25,9 +26,15 @@ const createObject = async (req, Model) => {
           .secure_url
       );
     }
+  
     newObject.images = imagesArray;
     console.log("imagesArray", imagesArray);
   }
+  if (req.files && req.files.image) {
+    console.log("Images processing ","____________________");
+    newObject.image= (await cloudinary.uploader.upload(req.files.image[0].path))
+       .secure_url
+     }
   if(Model===Tree){
     if (newObject.farm && newObject.farm.length > 0) {
       const farms = await Farm.find({ _id: { $in: newObject.farm } });

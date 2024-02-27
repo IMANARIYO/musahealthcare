@@ -14,6 +14,133 @@ servers:
     description: Local development server
 components:
   schemas:
+    Testimony:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the testimony
+        text:
+          type: string
+          description: The content of the testimony
+        image:
+          type: string
+          format: binary
+          description: The image file for the testimony
+        images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: The additional image files for the testimony
+        date:
+          type: string
+          format: date-time
+          description: The date of the testimony
+        rating:
+          type: number
+          minimum: 0
+          maximum: 5
+          description: The rating of the testimony
+        disease:
+          type: string
+          description: The ID of the associated disease (optional)
+    Service:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the service
+        image:
+          type: string
+          format: binary
+          description: The image of the service
+        description:
+          type: string
+          description: Description of the service
+        beneficiaries:
+          type: array
+          items:
+            type: string
+          description: List of beneficiaries
+    Medicine:
+     type: object
+     properties:
+       _id:
+         type: string
+         description: ID of the medicine
+       name:
+         type: string
+         description: Name of the medicine
+       images:
+         type: array
+         items:
+           type: string
+         description: Images of the medicine
+       diseases:
+         type: array
+         items:
+           type: string
+         description: List of disease IDs associated with the medicine
+       treesUsed:
+         type: array
+         items:
+           type: string
+         description: List of tree IDs associated with the medicine
+       frequency:
+         type: string
+         description: Frequency of taking the medicine
+       additionMaterialsTomakeIt:
+         type: array
+         items:
+           type: string
+         description: Additional materials required to make the medicine
+       procedureToMake:
+         type: string
+         description: Procedure to make the medicine
+       procedureToTake:
+         type: string
+         description: Procedure to take the medicine
+       extraAdditionsTotakeit:
+         type: array
+         items:
+           type: string
+         description: Extra additions to take with the medicine
+       beneficiaries:
+         type: array
+         items:
+           type: string
+         description: Beneficiaries of the medicine
+    Partner:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID of the partner
+        name:
+          type: string
+          description: Name of the partner
+        image:
+          type: string
+          description: Image URL of the partner
+        telephone:
+          type: string
+          description: Telephone number of the partner
+        role:
+          type: string
+          description: Role of the partner
+        email:
+          type: string
+          description: Email of the partner
+        location:
+          type: string
+          description: Location of the partner
+        description:
+          type: string
+          description: Description of the partner
+        district:
+          type: string
+          description: District of the partner
     Appointment:
       type: object
       properties:
@@ -80,6 +207,38 @@ components:
             type: string
           default: []
           description: List of patients diagnosed with the disease.
+    Farm:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID of the farm
+        locations:
+          type: array
+          items:
+            type: string
+          description: List of farm locations
+        googlemap:
+          type: string
+          description: Google Map link for the farm location
+        images:
+          type: array
+          items:
+            type: string
+          description: Images of the farm
+        trees:
+          type: array
+          items:
+            type: string
+          description: List of tree IDs associated with the farm
+        treestypesNumber:
+          type: number
+          description: Number of tree types on the farm
+        expectedYieldTime:
+          type: string
+          format: date
+          description: Expected time for yield from the farm
+      
 paths:
   /appointment/createAppointment:
     post:
@@ -732,36 +891,594 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Farm'
-components:
-  schemas:
-    Farm:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: ID of the farm
-        locations:
-          type: array
-          items:
+  /medicine/createMedicine:
+    post:
+      summary: Create a new medicine
+      tags: 
+        - Medicine
+      description: Endpoint to create a new medicine with support for image uploads.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the medicine
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Images of the medicine
+                diseases:
+                  type: array
+                  items:
+                    type: string
+                  description: List of disease IDs associated with the medicine
+                treesUsed:
+                  type: array
+                  items:
+                    type: string
+                  description: List of tree IDs associated with the medicine
+                frequency:
+                  type: string
+                  description: Frequency of taking the medicine
+                additionMaterialsTomakeIt:
+                  type: array
+                  items:
+                    type: string
+                  description: Additional materials required to make the medicine
+                procedureToMake:
+                  type: string
+                  description: Procedure to make the medicine
+                procedureToTake:
+                  type: string
+                  description: Procedure to take the medicine
+                extraAdditionsTotakeit:
+                  type: array
+                  items:
+                    type: string
+                  description: Extra additions to take with the medicine
+                beneficiaries:
+                  type: array
+                  items:
+                    type: string
+                  description: Beneficiaries of the medicine
+      responses:
+        '201':
+          description: Medicine created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+  /medicine/updateMedicine/{id}:
+    put:
+      summary: Update an existing medicine
+      tags:
+        - Medicine
+      description: Endpoint to update an existing medicine.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the medicine to update
+          schema:
             type: string
-          description: List of farm locations
-        googlemap:
-          type: string
-          description: Google Map link for the farm location
-        images:
-          type: array
-          items:
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Medicine'
+      responses:
+        '200':
+          description: Medicine updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+  /medicine/deleteMedicine/{id}:
+    delete:
+      summary: Delete a medicine by ID
+      tags:
+        - Medicine
+      description: Endpoint to delete a medicine by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the medicine to delete
+          schema:
             type: string
-          description: Images of the farm
-        trees:
-          type: array
-          items:
+      responses:
+        '200':
+          description: Medicine deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Medicine deleted successfully
+                  data:
+                    type: null
+  /medicine/getAllMedicines:
+    get:
+      summary: Get all medicines
+      tags:
+        - Medicine
+      description: Endpoint to retrieve all medicines.
+      responses:
+        '200':
+          description: Successfully retrieved all medicines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Medicine'
+  /medicine/getMedicineById/{id}:
+    get:
+      summary: Get medicine by ID
+      tags:
+        - Medicine
+      description: Endpoint to retrieve a medicine by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the medicine to retrieve
+          schema:
             type: string
-          description: List of tree IDs associated with the farm
-        treestypes:
-          type: number
-          description: Number of tree types on the farm
-        expectedYieldTime:
-          type: string
-          format: date
-          description: Expected time for yield from the farm
+      responses:
+        '200':
+          description: Successfully retrieved medicine by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+
+   
+
+  /partner/createPartner:
+    post:
+      summary: Create a new partner
+      tags: 
+        - Partner
+      description: Endpoint to create a new partner with support for image uploads.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the partner
+                image:
+                  type: string
+                  format: binary
+                  description: Image of the partner
+                telephone:
+                  type: string
+                  description: Telephone number of the partner
+                role:
+                  type: string
+                  description: Role of the partner
+                email:
+                  type: string
+                  description: Email of the partner
+                location:
+                  type: string
+                  description: Location of the partner
+                description:
+                  type: string
+                  description: Description of the partner
+                district:
+                  type: string
+                  description: District of the partner
+      responses:
+        '201':
+          description: Partner created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partner'
+  /partner/updatePartner/{id}:
+    put:
+      summary: Update an existing partner
+      tags:
+        - Partner
+      description: Endpoint to update an existing partner.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the partner to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Partner'
+      responses:
+        '200':
+          description: Partner updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partner'
+  /partner/deletePartner/{id}:
+    delete:
+      summary: Delete a partner by ID
+      tags:
+        - Partner
+      description: Endpoint to delete a partner by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the partner to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Partner deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Partner deleted successfully
+                  data:
+                    type: null
+  /partner/getAllPartners:
+    get:
+      summary: Get all partners
+      tags:
+        - Partner
+      description: Endpoint to retrieve all partners.
+      responses:
+        '200':
+          description: Successfully retrieved all partners
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partner'
+  /partner/getPartnerById/{id}:
+    get:
+      summary: Get partner by ID
+      tags:
+        - Partner
+      description: Endpoint to retrieve a partner by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the partner to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved partner by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partner'
+  /service/createService:
+    post:
+      tags:
+        - Service
+      summary: Create a new service
+      operationId: createService
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Service'
+      responses:
+        '200':
+          description: Service created successfully
+        '500':
+          description: Internal server error
+  /service/readServices:
+    get:
+      tags:
+        - Service
+      summary: Get all services
+      operationId: getServices
+      responses:
+        '200':
+          description: List of services
+        '500':
+          description: Internal server error
+  /service/readServices/{id}:
+    get:
+      tags:
+        - Service
+      summary: Get a service by ID
+      operationId: getServiceById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the service
+      responses:
+        '200':
+          description: Service found
+        '404':
+          description: Service not found
+        '500':
+          description: Internal server error
+  /service/updateService/{id}:
+    put:
+      tags:
+        - Service
+      summary: Update a service by ID
+      operationId: updateServiceById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the service
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Service'
+      responses:
+        '200':
+          description: Service updated successfully
+        '404':
+          description: Service not found
+        '500':
+          description: Internal server error
+  /service/deleteService/{id}:
+    delete:
+      tags:
+        - Service
+      summary: Delete a service by ID
+      operationId: deleteServiceById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the service
+      responses:
+        '200':
+          description: Service deleted successfully
+        '404':
+          description: Service not found
+        '500':
+          description: Internal server error
+  /testimony/createTestimony:
+    post:
+      tags:
+        - Testimony
+      summary: Create a new testimony
+      operationId: createTestimony
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Testimony'
+      responses:
+        '200':
+          description: Testimony created successfully
+        '500':
+          description: Internal server error
+  /testimony/getTestimony:
+    get:
+      tags:
+        - Testimony
+      summary: Get all testimonies
+      operationId: getTestimonies
+      responses:
+        '200':
+          description: List of testimonies
+        '500':
+          description: Internal server error
+  /testimony/getTestimony/{id}:
+    get:
+      tags:
+        - Testimony
+      summary: Get a testimony by ID
+      operationId: getTestimonyById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the testimony
+      responses:
+        '200':
+          description: Testimony found
+        '404':
+          description: Testimony not found
+        '500':
+          description: Internal server error
+  /testimony/updateTestimony/{id}:
+    put:
+      tags:
+        - Testimony
+      summary: Update a testimony by ID
+      operationId: updateTestimonyById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the testimony
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Testimony'
+      responses:
+        '200':
+          description: Testimony updated successfully
+        '404':
+          description: Testimony not found
+        '500':
+          description: Internal server error
+  /testimony/deleteTestimony/{id}:
+    delete:
+      tags:
+        - Testimony
+      summary: Delete a testimony by ID
+      operationId: deleteTestimonyById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the testimony
+      responses:
+        '200':
+          description: Testimony deleted successfully
+        '404':
+          description: Testimony not found
+        '500':
+         description: Internal server error
+  /patient/createPatient:
+   post:
+     summary: Create a new patient.
+     tags: [patient]
+     requestBody:
+       required: true
+       content:
+         multipart/form-data:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+               email:
+                 type: string
+               phone:
+                 type: string
+               location:
+                 type: string
+               disease:
+                 type: array
+                 items:
+                   type: string
+                 description: List of disease IDs
+               description:
+                 type: string
+               file:
+                 type: string
+                 format: binary
+     responses:
+       '200':
+         description: A successful response
+  /patient/getAllPatients:
+    get:
+      summary: Get all patients.
+      tags: [patient]
+      responses:
+        '200':
+          description: A successful response
+  /patient/getPatientById:
+    get:
+      summary: Get a patient by ID.
+      tags: [patient]
+      responses:
+        '200':
+          description: A successful response
+  /patient/updatePatient/{id}:
+    put:
+      summary: Update a patient by ID.
+      tags: [patient]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the patient to update
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                location:
+                  type: string
+                disease:
+                  type: array
+                  items:
+                    type: string
+                  description: List of disease IDs
+                description:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: A successful response
+  /patient/deletePatient/{id}:
+    delete:
+      summary: Delete a patient by ID.
+      tags: [patient]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the patient to delete
+      responses:
+        '200':
+          description: A successful response
+
