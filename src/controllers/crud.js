@@ -15,6 +15,7 @@ cloudinary.config({
 
 const createObject = async (req, Model) => {
   let newObject = { ...req.body};
+  console.log('req.body', req.body);
   if (req.files && req.files.images){
     console.log("Images processing ");
     let imagesArray = [];
@@ -73,6 +74,11 @@ const handleModelOperation = (Model, operation) => {
         case 'create':
           try {
             result = await createObject(req, Model);
+            res.status(201).json({
+              status: 'success',
+              message: `${Model.modelName} created successfully`,
+              data: result
+          });
           } catch (error) {
             next(error);
             return; 
@@ -81,8 +87,18 @@ const handleModelOperation = (Model, operation) => {
         case 'read':
           if (req.params.id) {
             result = await Model.findById(req.params.id).populate('farm').populate('medicines');
+            res.status(200).json({
+              status: 'success',
+              message: `${Model.modelName} retrieved successfully`,
+              data: result
+          });
           } else {
             result = await Model.find().populate('farm').populate('medicines').populate('vaccinations').populate('trees');
+            res.status(200).json({
+              status: 'success',
+              message: `All ${Model.modelName} retrieved successfully`,
+              data: result
+          });
           }
           break;
         case 'update':
@@ -92,23 +108,28 @@ const handleModelOperation = (Model, operation) => {
           }
           documentToUpdate.set(req.body);
           result = await documentToUpdate.save();
+          res.status(200).json({
+            status: 'success',
+            message: `${Model.modelName} updated successfully`,
+            data: result
+        });
           break;
         case 'delete':
           let documentToDelete = await Model.findById(req.params.id);
           if (!documentToDelete) {
             throw new AppError(`${Model.modelName} not found with ID: ${req.params.id}`, 404);
           }
-          result = await documentToDelete.remove();
+          result = await Model.findByIdAndDelete(req.params.id);
+          res.status(200).json({
+            status: 'success',
+            message: `${Model.modelName} deleted successfully`,
+            data: result
+        });
           break;
         default:
           throw new AppError('Invalid operation', 400);
       }
-      res.status(200).json({
-        status: 'success',
-        data: {
-          result
-        }
-      });
+     
     } catch (error) {
       next(error); 
     }

@@ -11,6 +11,7 @@ import mainRouter from "./src/endpoints/index.js";
 import { badroutes,errosingeneral } from "./src/middlewares/globaleerorshandling.js";
 import swaggerUi from 'swagger-ui-express';
 const app = express();
+app.use(express.json());
 app.use(cors());
 const swaggerDocument = yaml.load("./documentationfile.yaml");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

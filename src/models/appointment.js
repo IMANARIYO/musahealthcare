@@ -12,11 +12,11 @@ const appointmentSchema = new Schema({
   },
   Name: {
     type: String,
-    required: false
+   
   },
   Email: {
     type: String,
-    required: false
+    
   },
   Telephone: {
     type: String,
