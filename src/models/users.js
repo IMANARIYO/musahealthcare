@@ -39,7 +39,7 @@ const usersSchema = new mongoose.Schema({
     timestamps: { currentTime: () => new Date() }, 
   }
 
-);
+).set('strictPopulate', false);
 usersSchema.pre('save', function (next) {
     this.userId=this._id;
     const now = new Date();

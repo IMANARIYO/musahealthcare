@@ -30,7 +30,13 @@ const diseaseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Patients',
     required: false
-  }]
+  }],
+  tetsimonies: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Testimony',
+    required: false
+  }],
+
 }).set('strictPopulate', false);
 const Disease = model('Disease', diseaseSchema);
 export default Disease;

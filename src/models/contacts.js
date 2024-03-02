@@ -8,7 +8,7 @@ const contactSchema = new mongoose.Schema({
   message: { type: String, required: false },
   dateSent: { type: Date, default: Date.now },
   dateReplied: { type: Date, required: false },
-  replayDate:{
+  replaydate:{
     type:String,
     required:false
   },

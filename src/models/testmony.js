@@ -6,7 +6,10 @@ const testimonySchema = new Schema({
     type: String,
     required: true
   },
-  text: {
+  contacts:{
+    type:String
+  },
+  maintestimony: {
     type: String,
     required: true
   },
@@ -27,11 +30,11 @@ const testimonySchema = new Schema({
     max: 5,
     required: true
   },
- disease: {
+ diseases: [{
    type: Schema.Types.ObjectId,
    ref: 'Disease',
    required: false
- }
+ }]
 }).set('strictPopulate', false);
 const Testimony = model('Testimony', testimonySchema);
 export default Testimony;

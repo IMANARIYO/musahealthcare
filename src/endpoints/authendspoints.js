@@ -5,8 +5,8 @@ const authRouter = express.Router();
 authRouter.post("/login", login);
 authRouter.post("/signup", signup);
 authRouter.post("/reset", verifyOTPAndUpdatePassword);
-authRouter.use(verifyingtoken)
 authRouter.post("/forget", generateAndSendOTP);
+authRouter.use(verifyingtoken)
 authRouter.delete("/deleteUserById/:id", deleteUserById);
 authRouter.patch("/updateUserById/:id", updateUserById);
 authRouter.get("/getAllUsers", getAllUsers);
