@@ -8,9 +8,19 @@ const contactSchema = new mongoose.Schema({
   message: { type: String, required: false },
   dateSent: { type: Date, default: Date.now },
   dateReplied: { type: Date, required: false },
-  reply: { type: String, required: false }
+  replayDate:{
+    type:String,
+    required:false
+  },
+  replied: { type: Boolean, required: false },
+  replaymessage:{
+    type:String,
+    required:false
+  },
+  replaysubject:{
+    type:String,
+    required:false
+  }
 }).set('strictPopulate', false);
-
 const Contact = mongoose.model('Contact', contactSchema);
-
 export default Contact;

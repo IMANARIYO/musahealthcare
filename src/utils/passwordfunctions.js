@@ -12,7 +12,7 @@ export const passComparer = async (password, hashedPass) => {
   return result;
 };
 
-export const generateOTP = (expiryMinutes = 5) => {
+export const generateOTP = (expiryMinutes = 5) => { 
   const otp = crypto.randomInt(100000, 999999);
   const expiryTime = new Date();
   expiryTime.setMinutes(expiryTime.getMinutes() + expiryMinutes);

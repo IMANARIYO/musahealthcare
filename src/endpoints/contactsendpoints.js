@@ -12,7 +12,7 @@ const deleteContact = deleteModelHandler(Contact);
 contactRouter.post('/createContact', createContact);
 contactRouter.get('/getAllContacts', readContacts);
 contactRouter.get('/getContactById', readContacts);
-contactRouter.put('/updateContact/:id', updateContact);
+contactRouter.put('/replaycontact/:id', updateContact);
 contactRouter.delete('/deleteContact/:id', deleteContact);
 
 export default contactRouter;

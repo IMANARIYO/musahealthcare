@@ -7,6 +7,8 @@ import Farm from "../models/farm.js";
 import Tree from "../models/tree.js";
 import Medicine from "../models/medecine.js";
 import Disease from "../models/diseases.js";
+import Contact from "../models/contacts.js";
+import { todaysdate } from "../utils/datefunctin.js";
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -113,6 +115,15 @@ const handleModelOperation = (Model, operation) => {
           if (!documentToUpdate) {
             throw new AppError(`${Model.modelName} not found with ID: ${req.params.id}`, 404);
           }
+          if(Model== Contact){
+         req.body.replaydate=todaysdate;
+         console.log( req.body.replaydate);
+       req.body.replied=true;
+            let contacterEmail=documentToUpdate.email;
+            let contactername=documentToUpdate.name;
+
+          }
+         
           documentToUpdate.set(req.body);
           result = await documentToUpdate.save();
           res.status(200).json({

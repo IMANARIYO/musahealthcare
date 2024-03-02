@@ -32,6 +32,7 @@ export const getAllUsers = async (req, res) => {
   
     try {
       const result = await userconst.findByIdAndUpdate(id, updates, { new: true });
+      await result.save();
       if (!result) {
         res.status(404).json({ success: false, error: 'User not found' });
       } else {

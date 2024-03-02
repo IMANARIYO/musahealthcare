@@ -6,7 +6,7 @@ export const tokengenerating = payload => {
   });
   return token;
 };
-export const  verifyingtoken=(req,res,next)=>
+export const  verifyingtoken=(req,res,next)=> 
 {
 try{
 let auth = req.headers.authorization;

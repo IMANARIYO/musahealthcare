@@ -30,6 +30,10 @@ const appointmentSchema = new Schema({
     type: String,
     required: false
   },
+  scheduleddate:{
+    type:String,
+    required:false
+  }
 }).set('strictPopulate', false);
 const Appointment = model('Appointment', appointmentSchema);
 export default Appointment;
