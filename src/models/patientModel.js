@@ -12,7 +12,8 @@ const patientsSchema = new mongoose.Schema({
     ref: 'Disease',
     required: false
   }],
-  description: { type: String, required: false }
+  description: { type: String, required: false },
+  image:{type:String}
 }).set('strictPopulate', false);
 
 export default mongoose.model('Patients', patientsSchema);

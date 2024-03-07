@@ -205,9 +205,9 @@ const handleModelOperation = (Model, operation) => {
             let company="musahealth care"
             await sendEmail(
               contacterEmail,
-              'Congratulations! Your application has been approved.',
-            'approval message',
-            htmlMessagerespondContact(req.body.replaymessage,  name,company)
+              'twishimiye kubona ubutumwa bwanyu',
+            'gusubiza',
+            htmlMessagerespondContact(req.body.replaysubbject,req.body.replaymessage,  name,company)
             )
           }
 

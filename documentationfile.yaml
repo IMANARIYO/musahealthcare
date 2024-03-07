@@ -1559,7 +1559,7 @@ paths:
                  description: List of disease IDs
                description:
                  type: string
-               file:
+               image:
                  type: string
                  format: binary
      responses:

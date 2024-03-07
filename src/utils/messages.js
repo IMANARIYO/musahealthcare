@@ -128,7 +128,7 @@ export const htmlMessageOfapplication= `
 </html>
 `;
 
-export const htmlMessagerespondContact = (bodyMessage, name,company) => {
+export const htmlMessagerespondContact = (subject,bodyMessage, name,company) => {
 
    `Dear ${name},`;
   // Construct the HTML message with styles
@@ -156,7 +156,7 @@ export const htmlMessagerespondContact = (bodyMessage, name,company) => {
       </head>
       <body>
         <h1>response from musa health care</h1>
-         <p>greeting</p>
+         <p>${subject}</p>
         <p>${bodyMessage}</p>
         <p>Best regards,</p>
         <p>${company}</p>
