@@ -127,6 +127,12 @@ components:
        name:
          type: string
          description: Name of the medicine
+       description:
+         type: string
+         description: Description of the medicine
+       price:
+         type: number
+         description: Price of
        images:
          type: array
          items:
@@ -1022,6 +1028,11 @@ paths:
                 name:
                   type: string
                   description: Name of the medicine
+                description:
+                  type: string
+                  description: Description of the medicine
+                price:
+                  type: number
                 images:
                   type: array
                   items:

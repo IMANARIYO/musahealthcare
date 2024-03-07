@@ -224,9 +224,6 @@ const handleModelOperation = (Model, operation) => {
             } else {
               response = req.body.response; 
             }
-
-        
-          
             await sendEmail(
               email,
               ' MUsa health cares Appointment Confirmation', 

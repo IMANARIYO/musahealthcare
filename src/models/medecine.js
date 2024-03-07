@@ -41,6 +41,9 @@ const medicineSchema = new Schema({
   beneficiaries: {
     type: [String],
     default: []
+  },
+  decription:{
+    type: String,
   }
 }).set('strictPopulate', false);
 const Medicine = model('Medicine', medicineSchema);
