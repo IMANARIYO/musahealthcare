@@ -241,3 +241,43 @@ export const  htmlMessageWaitingList = (bodyMessage, gender, name) => {
 
   return htmlMessage;
 };
+
+// Function to generate HTML message for responding to contact
+export const htmlMessagerespondAppointment = (subject, bodyMessage, name, company) => {
+  // Construct the HTML message with styles
+  const htmlMessage = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+          }
+
+          p {
+            margin-bottom: 15px;
+          }
+
+          h1 {
+            color: #009688;
+          }
+        </style>
+        <title>Your Application Status</title>
+      </head>
+      <body>
+        <h1>Response from Musa Health Care</h1>
+        <p>${subject}</p>
+        <p>${bodyMessage}</p>
+        <p>Best regards,</p>
+        <p>${company}</p>
+      </body>
+    </html>
+  `;
+
+  return htmlMessage;
+};
+
+// Example usage within the context of responding to an appointment request

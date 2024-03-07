@@ -12,9 +12,9 @@ import patientModel from '../models/patientModel.js'
 import { todaysdate } from '../utils/datefunctin.js'
 import Testimony from '../models/testmony.js'
 
-
 import { sendEmail } from '../utils/emailUtility.js'
-import { htmlMessagerespondContact, htmlMessageRejected } from '../utils/messages.js'
+import { htmlMessagerespondContact, htmlMessageRejected, htmlMessagerespondAppointment } from '../utils/messages.js'
+import Appointment from '../models/appointment.js'
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -114,6 +114,7 @@ const createObject = async (req, Model) => {
         { $push: { diseases: result._id } }
       )
     }
+    return result;
   }
   if (Model === Testimony) {
     const result = await Model.create(newObject)
@@ -156,6 +157,7 @@ const handleModelOperation = (Model, operation) => {
             .populate('medicines')
             .populate('vaccinations')
             .populate('trees')
+            .populate('treesUsed')
             .populate('tetsimonies')
             .populate('patients')
             .populate('vaccinations')
@@ -205,12 +207,33 @@ const handleModelOperation = (Model, operation) => {
             let company="musahealth care"
             await sendEmail(
               contacterEmail,
-              'twishimiye kubona ubutumwa bwanyu',
+              'from musaHealthcare contact',
             'gusubiza',
             htmlMessagerespondContact(req.body.replaysubbject,req.body.replaymessage,  name,company)
             )
           }
+          if (Model === Appointment) {
+            let name = documentToUpdate.Name;
+            let email = documentToUpdate.Email;
+            let scheduleddate = req.body.scheduleddate;
+            let response = "";
+          console.log("-------------------------",req.body.scheduleddate)
+            if (!req.body.response) {
+              response = "Appointment has been accepted";
+            } else {
+              response = req.body.response; 
+            }
 
+        
+          
+            await sendEmail(
+              email,
+              ' MUsa health cares Appointment Confirmation', 
+              response, 
+              htmlMessagerespondAppointment(response, `Your appointment is scheduled for ${scheduleddate}.`, name, "Musa Health Care") // Generate HTML message
+            );
+          }
+          
           documentToUpdate.set(req.body)
           result = await documentToUpdate.save()
           res.status(200).json({
