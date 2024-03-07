@@ -1,4 +1,5 @@
 
+let company="fablab rwanda"
 export const htmlMessageOfapplicationytr= `
 <html>
   <head>
@@ -53,32 +54,54 @@ export const htmlMessageApprovegfdfgfd= `
 </html>
 `;
 
-export const htmlMessageRejected = `
-<html>
-  <head>
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background-color: #ffcccc;
-        color: #cc0000;
-        margin: 20px;
-      }
-      h1 {
-        color: #cc0000;
-      }
-      p {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-    </style>
-    <title>Application Rejected</title>
-  </head>
-  <body>
-    <h1>We regret to inform you</h1>
-    <p>Unfortunately, your application has been rejected. Please feel free to apply again in the future.</p>
-  </body>
-</html>
-`;export const htmlMessageOfapplication= `
+export const  htmlMessageRejected = (bodyMessage, gender, name) => {
+  // Make gender case-insensitive
+  const lowerCaseGender = gender.toLowerCase();
+
+  // Determine title based on gender
+  const title = lowerCaseGender === 'male' ? 'Mr.' : lowerCaseGender === 'female' ? 'Ms.' : '';
+
+  // Greet the applicant based on gender
+  const greeting = title ? `Dear ${title} ${name},` : `Dear ${name},`;
+
+  // Construct the HTML message with styles
+  const htmlMessage = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+          }
+
+          p {
+            margin-bottom: 15px;
+          }
+
+          h1 {
+            color: #e74c3c;
+          }
+        </style>
+        <title>Application Rejected</title>
+      </head>
+      <body>
+        <h1>Application Rejected</h1>
+        <p>${greeting}</p>
+        <p>${bodyMessage}</p>
+        <p>We appreciate your interest in our program. If you have any questions, feel free to reach out.</p>
+        <p>Best regards,</p>
+        <p>${company}</p>
+      </body>
+    </html>
+  `;
+
+  return htmlMessage;
+};
+
+export const htmlMessageOfapplication= `
 <html>
   <head>
     <style>
@@ -105,40 +128,47 @@ export const htmlMessageRejected = `
 </html>
 `;
 
-export const htmlMessageApproved = `
-<html>
-  <head>
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background-color: #e6ffe6;
-        color: #006600;
-        margin: 20px;
-      }
-      h1 {
-        color: #006600;
-      }
-      p {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-    </style>
-    <title>Application Approved</title>
-  </head>
-  <body>
-    <h1>Congratulations!</h1>
-    <p>Your application has been approved. Welcome to our community!</p>
-  </body>
-</html>
-`;
+export const htmlMessagerespondContact = (bodyMessage, name,company) => {
 
-// Function to generate the verification link
-// const generateVerificationLink = (token) => {
-//   return `http://your-verification-link?token=${token}`;
-// };
+   `Dear ${name},`;
+  // Construct the HTML message with styles
+  const htmlMessage = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+          }
 
-// Updated signup template with a button
-export const signupHtmlMessage = (verificationToken) => `
+          p {
+            margin-bottom: 15px;
+          }
+
+          h1 {
+            color: #009688;
+          }
+        </style>
+        <title>Your Application Status</title>
+      </head>
+      <body>
+        <h1>response from musa health care</h1>
+         <p>greeting</p>
+        <p>${bodyMessage}</p>
+        <p>Best regards,</p>
+        <p>${company}</p>
+      </body>
+    </html>
+  `;
+
+  return htmlMessage;
+};
+
+
+export const signupHtmlMessage= `
 <html>
   <head>
     <style>
@@ -155,54 +185,59 @@ export const signupHtmlMessage = (verificationToken) => `
         font-size: 16px;
         line-height: 1.5;
       }
-      .button-container {
-        margin-top: 20px;
-      }
-      .verification-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #cc0000;
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 5px;
-      }
     </style>
-    <title>Signup Successful</title>
+    <title>signup goes well</title>
   </head>
   <body>
-    <h1>Successful registration on Route Easy </h1>
-    <p>Thank you for registering! To complete your registration, please verify your email by clicking the button below:</p>
-    <div class="button-container">
-      <a class="verification-button" href="${verificationToken}">Verify Email</a>
-    </div>
+    <h1> succeful registration on fab lab</h1>
+    <p>registaraton message.</p>
   </body>
 </html>
 `;
 
+export const  htmlMessageWaitingList = (bodyMessage, gender, name) => {
+  // Make gender case-insensitive
+  const lowerCaseGender = gender.toLowerCase();
 
-export const htmlMessageWaitingList = `
-<html>
-  <head>
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background-color: #ffffcc;
-        color: #996600;
-        margin: 20px;
-      }
-      h1 {
-        color: #996600;
-      }
-      p {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-    </style>
-    <title>Application on Waiting List</title>
-  </head>
-  <body>
-    <h1>Your application is on the waiting list</h1>
-    <p>Your application has been added to the waiting list. We will notify you if a spot becomes available.</p>
-  </body>
-</html>
-`;
+  // Determine title based on gender
+  const title = lowerCaseGender === 'male' ? 'Mr.' : lowerCaseGender === 'female' ? 'Ms.' : '';
+
+  // Greet the applicant based on gender
+  const greeting = title ? `Dear ${title} ${name},` : `Dear ${name},`;
+
+  // Construct the HTML message with styles
+  const htmlMessage = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+          }
+
+          p {
+            margin-bottom: 15px;
+          }
+
+          h1 {
+            color: #3498db;
+          }
+        </style>
+        <title>Application on Waiting List</title>
+      </head>
+      <body>
+        <h1>Application on Waiting List</h1>
+        <p>${greeting}</p>
+        <p>${bodyMessage}</p>
+        <p>We will notify you as soon as a spot becomes available. Thank you for your patience.</p>
+        <p>Best regards,</p>
+        <p>${company}</p>
+      </body>
+    </html>
+  `;
+
+  return htmlMessage;
+};

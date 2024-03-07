@@ -12,6 +12,9 @@ import patientModel from '../models/patientModel.js'
 import { todaysdate } from '../utils/datefunctin.js'
 import Testimony from '../models/testmony.js'
 
+
+import { sendEmail } from '../utils/emailUtility.js'
+import { htmlMessagerespondContact, htmlMessageRejected } from '../utils/messages.js'
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -196,7 +199,16 @@ const handleModelOperation = (Model, operation) => {
             req.body.replied = true
             let contacterEmail = documentToUpdate.email
             let contactername = documentToUpdate.name
-            console.log('----------', req.body)
+            console.log('----------', contacterEmail)
+           let gender="male"
+            let  name="baptiste"
+            let company="musahealth care"
+            await sendEmail(
+              contacterEmail,
+              'Congratulations! Your application has been approved.',
+            'approval message',
+            htmlMessagerespondContact(req.body.replaymessage,  name,company)
+            )
           }
 
           documentToUpdate.set(req.body)

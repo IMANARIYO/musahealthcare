@@ -505,18 +505,11 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                  default: John Doe
-                email:
-                  type: string
-                  default: johndoe@example.com
+                
                 replaysubbject:
                   type: string
                   example: subject
-                telephone:
-                  type: string
-                  example: "+1234567890"
+             
                 replaymessage:
                   type: string
                   example: Hello, I have a question.
