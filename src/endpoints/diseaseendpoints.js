@@ -2,7 +2,6 @@ import { createModelHandler, readModelHandler, updateModelHandler, deleteModelHa
 import express from "express";
 import { uploaded } from "../utils/multer.js";
 import Disease from "../models/diseases.js";
-
 // Define endpoint handlers
 const createDisease = createModelHandler(Disease);
 const readDiseases = readModelHandler(Disease);

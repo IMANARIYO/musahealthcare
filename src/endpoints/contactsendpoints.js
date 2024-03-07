@@ -11,7 +11,7 @@ const deleteContact = deleteModelHandler(Contact);
 // Define your Express routes for contacts
 contactRouter.post('/createContact', createContact);
 contactRouter.get('/getAllContacts', readContacts);
-contactRouter.get('/getContactById', readContacts);
+contactRouter.get('/getContactById/:id', readContacts);
 contactRouter.put('/replaycontact/:id', updateContact);
 contactRouter.delete('/deleteContact/:id', deleteContact);
 
