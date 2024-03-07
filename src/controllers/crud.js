@@ -174,6 +174,7 @@ const handleModelOperation = (Model, operation) => {
               .populate('medicines')
               .populate('vaccinations')
               .populate('trees')
+              .populate('treesUsed')
               .populate('tetsimonies')
               .populate('patients')
               .populate('vaccinations')
