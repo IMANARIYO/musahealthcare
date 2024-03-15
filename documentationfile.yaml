@@ -23,6 +23,9 @@ components:
     Tree:
       type: object
       properties:
+        name:
+          type: string
+          description: name of tree
         images:
           type: array
           items:
@@ -881,6 +884,9 @@ paths:
                 locations:
                   type: string
                   description: Comma-separated list of farm locations.
+                name:
+                  type: string
+                  description: name of the farm 
                 googlemap:
                   type: string
                   description: Google Map link for the farm location.

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const treeSchema = new Schema({
+  name:{type:String},
   images: [{
     type: String ,
     required: false

@@ -42,7 +42,7 @@ const medicineSchema = new Schema({
     type: [String],
     default: []
   },
-  decription:{
+  description:{
     type: String,
   }
 }).set('strictPopulate', false);
