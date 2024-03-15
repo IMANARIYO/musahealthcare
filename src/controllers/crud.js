@@ -104,6 +104,7 @@ const createObject = async (req, Model) => {
         { $push: { patients: result._id } }
       )
     }
+    return result;
   }
   if (Model === Disease) {
     const result = await Model.create(newObject)

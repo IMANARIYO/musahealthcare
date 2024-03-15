@@ -6,7 +6,7 @@ authRouter.post("/login", login);
 authRouter.post("/signup", signup);
 authRouter.post("/reset", verifyOTPAndUpdatePassword);
 authRouter.post("/forget", generateAndSendOTP);
-authRouter.use(verifyingtoken)
+// authRouter.use(verifyingtoken)
 authRouter.delete("/deleteUserById/:id", deleteUserById);
 authRouter.patch("/updateUserById/:id", updateUserById);
 authRouter.get("/getAllUsers", getAllUsers);
