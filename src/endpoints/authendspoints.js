@@ -2,13 +2,13 @@ import { login,signup,verifyOTPAndUpdatePassword,generateAndSendOTP,changepasswo
 import  express from "express";
 import { verifyingtoken } from "../utils/jwtfunctions.js";
 const authRouter = express.Router();
-authRouter.post("/login", login);
-authRouter.post("/signup", signup);
+authRouter.post("/login",login);
+authRouter.post("/signup",signup);
 authRouter.post("/reset", verifyOTPAndUpdatePassword);
 authRouter.post("/forget", generateAndSendOTP);
-// authRouter.use(verifyingtoken)
-authRouter.delete("/deleteUserById/:id", deleteUserById);
-authRouter.patch("/updateUserById/:id", updateUserById);
+authRouter.use(verifyingtoken)
 authRouter.get("/getAllUsers", getAllUsers);
 authRouter.post("/change", changepassword);
+authRouter.delete("/deleteUserById/:id", deleteUserById);
+authRouter.patch("/updateUserById/:id", updateUserById);
 export default authRouter;
