@@ -58,7 +58,7 @@ components:
           items:
             type: string
           description: List of parts used
-        patiennts:
+        patients:
           type: array
           items:
             type: string
@@ -1576,6 +1576,17 @@ paths:
                  description: List of disease IDs
                description:
                  type: string
+
+               age:
+                 type: string
+               howWasAttack:
+                 type: string
+               symptoms:
+                 type: string
+               recentlyAffectedDisease:
+                 type: string
+               recentMedecine:
+                 type: string
                image:
                  type: string
                  format: binary
@@ -1985,35 +1996,6 @@ paths:
         '500':
           description: Internal Server Error
 
-  /auth/login:
-    post:
-      summary: User Login
-      tags: [authentication]
-      operationId: login
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - email
-                - password
-              properties:
-                email:
-                  type: string
-                  example: "imanariyobaptiste@gmail.com"
-                password:
-                  type: string
-                  example: "123"
-      responses:
-        '200':
-          description: User logged in successfully
-        '401':
-          description: Unauthorized - Invalid credentials
-        '500':
-          description: Internal Server Error
-
-  /auth/forget:
     post:
       summary: Generate and Send OTP for Password Reset
       tags: [authentication]

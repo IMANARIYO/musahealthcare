@@ -1,20 +1,21 @@
-import { AppError, catchAsync } from '../middlewares/globaleerorshandling.js'
-import dotenv from 'dotenv'
+import Appointment from "../models/appointment.js";
+import Contact from "../models/contacts.js";
+import Disease from "../models/diseases.js";
+import Farm from "../models/farm.js";
+import Medicine from "../models/medecine.js";
+import Testimony from "../models/testmony.js";
+import Tree from "../models/tree.js";
+import dotenv from "dotenv";
+import patientModel from "../models/patientModel.js";
+import { v2 as cloudinary } from "cloudinary";
+import { AppError, catchAsync } from "../middlewares/globaleerorshandling.js";
+import { todaysdate } from "../utils/datefunctin.js";
+import { sendEmail } from "../utils/emailUtility.js";
+import { htmlMessageRejected, htmlMessagerespondAppointment, htmlMessagerespondContact } from "../utils/messages.js";
+
 dotenv.config()
 
-import { v2 as cloudinary } from 'cloudinary'
-import Farm from '../models/farm.js'
-import Tree from '../models/tree.js'
-import Medicine from '../models/medecine.js'
-import Disease from '../models/diseases.js'
-import Contact from '../models/contacts.js'
-import patientModel from '../models/patientModel.js'
-import { todaysdate } from '../utils/datefunctin.js'
-import Testimony from '../models/testmony.js'
 
-import { sendEmail } from '../utils/emailUtility.js'
-import { htmlMessagerespondContact, htmlMessageRejected, htmlMessagerespondAppointment } from '../utils/messages.js'
-import Appointment from '../models/appointment.js'
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -43,6 +44,9 @@ const createObject = async (req, Model) => {
     newObject.image = (await cloudinary.uploader.upload(
       req.files.image[0].path
     )).secure_url
+    console.log( (await cloudinary.uploader.upload(
+      req.files.image[0].path
+    )).secure_url)
   }
   if (Model === Tree) {
     if (newObject.farm && newObject.farm.length > 0) {
