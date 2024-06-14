@@ -1,11 +1,12 @@
-import '../models/users.js'
-import cron from 'node-cron'
-import mongoose from 'mongoose'
-import { catchAsync } from '../middlewares/globaleerorshandling.js'
-import { passHashing, tokengenerating } from '../utils/index.js'
-import { sendEmail } from '../utils/index.js'
-import { signupHtmlMessage } from '../utils/index.js'
-import { generateOTP } from '../utils/index.js'
+import "../models/users.js";
+import cron from "node-cron";
+import mongoose from "mongoose";
+import { catchAsync } from "../middlewares/globaleerorshandling.js";
+import { User } from "../models/users.js";
+import { passHashing, tokengenerating } from "../utils/index.js";
+import { sendEmail } from "../utils/index.js";
+import { signupHtmlMessage } from "../utils/index.js";
+import { generateOTP } from "../utils/index.js";
 
 const scheduleUserDeletion = (userId, signupTime) => {
   const deletionTime = new Date(signupTime.getTime() + 3 * 60 * 1000) // 6 minutes later
