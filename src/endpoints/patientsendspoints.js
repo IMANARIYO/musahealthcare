@@ -1,7 +1,7 @@
-import patientModel from "../models/patientModel.js";
-import { createModelHandler, readModelHandler, updateModelHandler, deleteModelHandler } from "../controllers/crud.js";
-import { uploaded } from "../utils/multer.js";
 import express from "express";
+import patientModel from "../models/patientModel.js";
+import { createModelHandler, deleteModelHandler, readModelHandler, updateModelHandler } from "../controllers/crud.js";
+import { uploaded } from "../utils/multer.js";
 
 const patientRouter = express.Router();
 
@@ -14,7 +14,7 @@ const deletePatient = deleteModelHandler(patientModel);
 // Define your Express routes for patients
 patientRouter.post('/createPatient', uploaded, createPatient);
 patientRouter.get('/getAllPatients', readPatients);
-patientRouter.get('/getPatientById', readPatients);
+patientRouter.get('/getPatientById/:id', readPatients);
 patientRouter.put('/updatePatient/:id',uploaded,updatePatient);
 patientRouter.delete('/deletePatient/:id', deletePatient);
 

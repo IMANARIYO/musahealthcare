@@ -1602,12 +1602,17 @@ paths:
       responses:
         '200':
           description: A successful response
-  /patient/getPatientById:
+  /patient/getPatientById/{id}:
     get:
       summary: Get a patient by ID.
       tags: [patient]
       security:
         - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the patient to retrieve
       responses:
         '200':
           description: A successful response
